@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="实训目标1、了解IIS WebDAV安全配置；2、了解HTTP标准方法外的其他一些方法；3、掌握HTTP PUT的方法测试利用；4、了解IIS6的畸形解析漏洞及利用测试方法；实训操作1、打开网站发现什么都没有，真的是干净的一批呀！  2、打开burp进行抓包，查看包： 3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：  123开头将GET改为OPTIONSOPTIONS/ H">
+  <meta name="description" content="实训目标1、了解IIS WebDAV安全配置；2、了解HTTP标准方法外的其他一些方法；3、掌握HTTP PUT的方法测试利用；4、了解IIS6的畸形解析漏洞及利用测试方法；实训操作1、打开网站发现什么都没有，真的是干净的一批呀！2、打开burp进行抓包，查看包：3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：">
 <meta name="keywords" content="Web,漏洞利用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IIS写权限漏洞">
 <meta property="og:url" content="http://0x3mSxl.github.io/2019/09/24/IIS写权限漏洞/index.html">
 <meta property="og:site_name" content="Pr0ud">
-<meta property="og:description" content="实训目标1、了解IIS WebDAV安全配置；2、了解HTTP标准方法外的其他一些方法；3、掌握HTTP PUT的方法测试利用；4、了解IIS6的畸形解析漏洞及利用测试方法；实训操作1、打开网站发现什么都没有，真的是干净的一批呀！  2、打开burp进行抓包，查看包： 3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：  123开头将GET改为OPTIONSOPTIONS/ H">
+<meta property="og:description" content="实训目标1、了解IIS WebDAV安全配置；2、了解HTTP标准方法外的其他一些方法；3、掌握HTTP PUT的方法测试利用；4、了解IIS6的畸形解析漏洞及利用测试方法；实训操作1、打开网站发现什么都没有，真的是干净的一批呀！2、打开burp进行抓包，查看包：3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-09-24T01:35:52.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IIS写权限漏洞">
-<meta name="twitter:description" content="实训目标1、了解IIS WebDAV安全配置；2、了解HTTP标准方法外的其他一些方法；3、掌握HTTP PUT的方法测试利用；4、了解IIS6的畸形解析漏洞及利用测试方法；实训操作1、打开网站发现什么都没有，真的是干净的一批呀！  2、打开burp进行抓包，查看包： 3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：  123开头将GET改为OPTIONSOPTIONS/ H">
+<meta name="twitter:description" content="实训目标1、了解IIS WebDAV安全配置；2、了解HTTP标准方法外的其他一些方法；3、掌握HTTP PUT的方法测试利用；4、了解IIS6的畸形解析漏洞及利用测试方法；实训操作1、打开网站发现什么都没有，真的是干净的一批呀！2、打开burp进行抓包，查看包：3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：">
   <link rel="alternate" href="/atom.xml" title="Pr0ud" type="application/atom+xml">
   <link rel="canonical" href="http://0x3mSxl.github.io/2019/09/24/IIS写权限漏洞/">
 
@@ -314,10 +314,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="实训目标"><a href="#实训目标" class="headerlink" title="实训目标"></a>实训目标</h1><h4 id="1、了解IIS-WebDAV安全配置；"><a href="#1、了解IIS-WebDAV安全配置；" class="headerlink" title="1、了解IIS WebDAV安全配置；"></a>1、了解IIS WebDAV安全配置；</h4><h4 id="2、了解HTTP标准方法外的其他一些方法；"><a href="#2、了解HTTP标准方法外的其他一些方法；" class="headerlink" title="2、了解HTTP标准方法外的其他一些方法；"></a>2、了解HTTP标准方法外的其他一些方法；</h4><h4 id="3、掌握HTTP-PUT的方法测试利用；"><a href="#3、掌握HTTP-PUT的方法测试利用；" class="headerlink" title="3、掌握HTTP PUT的方法测试利用；"></a>3、掌握HTTP PUT的方法测试利用；</h4><h4 id="4、了解IIS6的畸形解析漏洞及利用测试方法；"><a href="#4、了解IIS6的畸形解析漏洞及利用测试方法；" class="headerlink" title="4、了解IIS6的畸形解析漏洞及利用测试方法；"></a>4、了解IIS6的畸形解析漏洞及利用测试方法；</h4><h1 id="实训操作"><a href="#实训操作" class="headerlink" title="实训操作"></a>实训操作</h1><h4 id="1、打开网站发现什么都没有，真的是干净的一批呀！"><a href="#1、打开网站发现什么都没有，真的是干净的一批呀！" class="headerlink" title="1、打开网站发现什么都没有，真的是干净的一批呀！"></a>1、打开网站发现什么都没有，真的是干净的一批呀！</h4>
+        <h1 id="实训目标"><a href="#实训目标" class="headerlink" title="实训目标"></a>实训目标</h1><h4 id="1、了解IIS-WebDAV安全配置；"><a href="#1、了解IIS-WebDAV安全配置；" class="headerlink" title="1、了解IIS WebDAV安全配置；"></a>1、了解IIS WebDAV安全配置；</h4><h4 id="2、了解HTTP标准方法外的其他一些方法；"><a href="#2、了解HTTP标准方法外的其他一些方法；" class="headerlink" title="2、了解HTTP标准方法外的其他一些方法；"></a>2、了解HTTP标准方法外的其他一些方法；</h4><h4 id="3、掌握HTTP-PUT的方法测试利用；"><a href="#3、掌握HTTP-PUT的方法测试利用；" class="headerlink" title="3、掌握HTTP PUT的方法测试利用；"></a>3、掌握HTTP PUT的方法测试利用；</h4><h4 id="4、了解IIS6的畸形解析漏洞及利用测试方法；"><a href="#4、了解IIS6的畸形解析漏洞及利用测试方法；" class="headerlink" title="4、了解IIS6的畸形解析漏洞及利用测试方法；"></a>4、了解IIS6的畸形解析漏洞及利用测试方法；</h4><h1 id="实训操作"><a href="#实训操作" class="headerlink" title="实训操作"></a>实训操作</h1><h4 id="1、打开网站发现什么都没有，真的是干净的一批呀！"><a href="#1、打开网站发现什么都没有，真的是干净的一批呀！" class="headerlink" title="1、打开网站发现什么都没有，真的是干净的一批呀！"></a>1、打开网站发现什么都没有，真的是干净的一批呀！</h4><h4 id="2、打开burp进行抓包，查看包："><a href="#2、打开burp进行抓包，查看包：" class="headerlink" title="2、打开burp进行抓包，查看包："></a>2、打开burp进行抓包，查看包：</h4><h4 id="3、将GET方式-修改为-OPTIONS-方式-查看具有哪些操作权限："><a href="#3、将GET方式-修改为-OPTIONS-方式-查看具有哪些操作权限：" class="headerlink" title="3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限："></a>3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：</h4><a id="more"></a>
 
-<h4 id="2、打开burp进行抓包，查看包："><a href="#2、打开burp进行抓包，查看包：" class="headerlink" title="2、打开burp进行抓包，查看包："></a>2、打开burp进行抓包，查看包：</h4>
-<h4 id="3、将GET方式-修改为-OPTIONS-方式-查看具有哪些操作权限："><a href="#3、将GET方式-修改为-OPTIONS-方式-查看具有哪些操作权限：" class="headerlink" title="3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限："></a>3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：</h4>
+
+
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">开头将GET改为OPTIONS</span><br><span class="line"></span><br><span class="line">OPTIONS/ HTTP/1.1</span><br></pre></td></tr></table></figure>
 
