@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://msxl.github.io/2020/04/29/hell/</loc>
+    <loc>http://msxl.github.io/about/index.html</loc>
     
-    <lastmod>2020-04-29T08:03:00.621Z</lastmod>
+    <lastmod>2020-04-29T09:39:02.960Z</lastmod>
     
   </url>
   
@@ -23,13 +23,6 @@
   </url>
   
   <url>
-    <loc>http://msxl.github.io/2019/10/12/upload-labs%E9%80%9A%E5%85%B3%E6%8C%87%E5%8D%97-%E4%B8%8A/</loc>
-    
-    <lastmod>2020-04-29T07:23:39.178Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://msxl.github.io/2019/09/09/CVE-2019-0708%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
     
     <lastmod>2020-04-29T07:20:46.652Z</lastmod>
@@ -44,20 +37,6 @@
   </url>
   
   <url>
-    <loc>http://msxl.github.io/2019/10/12/upload-labs%E9%80%9A%E5%85%B3%E6%8C%87%E5%8D%97-%E4%B8%AD/</loc>
-    
-    <lastmod>2019-10-12T08:49:19.607Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://msxl.github.io/2019/10/12/upload-labs%E9%80%9A%E5%85%B3%E6%8C%87%E5%8D%97-%E4%B8%8B/</loc>
-    
-    <lastmod>2019-10-12T08:45:02.672Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://msxl.github.io/2019/10/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8Bmeterpreter%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2019-10-12T07:50:37.217Z</lastmod>
@@ -68,13 +47,6 @@
     <loc>http://msxl.github.io/2019/09/24/IIS%E5%86%99%E6%9D%83%E9%99%90%E6%BC%8F%E6%B4%9E/</loc>
     
     <lastmod>2019-09-24T01:35:52.595Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://msxl.github.io/about/index.html</loc>
-    
-    <lastmod>2019-09-06T06:50:10.253Z</lastmod>
     
   </url>
   
