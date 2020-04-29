@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://msxl.github.io/"/>
-  <updated>2019-10-12T08:45:02.672Z</updated>
+  <updated>2020-04-29T08:03:00.621Z</updated>
   <id>http://msxl.github.io/</id>
   
   <author>
@@ -15,6 +15,97 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hell</title>
+    <link href="http://msxl.github.io/2020/04/29/hell/"/>
+    <id>http://msxl.github.io/2020/04/29/hell/</id>
+    <published>2020-04-29T08:02:22.000Z</published>
+    <updated>2020-04-29T08:03:00.621Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://msxl.github.io/categories/Linux/"/>
+    
+      <category term="Windows" scheme="http://msxl.github.io/categories/Linux/Windows/"/>
+    
+      <category term="kali" scheme="http://msxl.github.io/categories/Linux/Windows/kali/"/>
+    
+      <category term="python" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/"/>
+    
+      <category term="php" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/"/>
+    
+      <category term="exp" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/"/>
+    
+      <category term="远控" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/"/>
+    
+      <category term="Android" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/"/>
+    
+      <category term="mac os" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/"/>
+    
+      <category term="逆向破解" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/"/>
+    
+      <category term="SQL注入" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term="爆破" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/SQL%E6%B3%A8%E5%85%A5/%E7%88%86%E7%A0%B4/"/>
+    
+      <category term="资源分享" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/SQL%E6%B3%A8%E5%85%A5/%E7%88%86%E7%A0%B4/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="渗透测试" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/SQL%E6%B3%A8%E5%85%A5/%E7%88%86%E7%A0%B4/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="shell" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/SQL%E6%B3%A8%E5%85%A5/%E7%88%86%E7%A0%B4/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/shell/"/>
+    
+      <category term="内网渗透" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/SQL%E6%B3%A8%E5%85%A5/%E7%88%86%E7%A0%B4/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/shell/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="提权" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/SQL%E6%B3%A8%E5%85%A5/%E7%88%86%E7%A0%B4/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/shell/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%8F%90%E6%9D%83/"/>
+    
+      <category term="MSF" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/SQL%E6%B3%A8%E5%85%A5/%E7%88%86%E7%A0%B4/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/shell/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%8F%90%E6%9D%83/MSF/"/>
+    
+      <category term="代码审计" scheme="http://msxl.github.io/categories/Linux/Windows/kali/python/php/exp/%E8%BF%9C%E6%8E%A7/Android/mac-os/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/SQL%E6%B3%A8%E5%85%A5/%E7%88%86%E7%A0%B4/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/shell/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%8F%90%E6%9D%83/MSF/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
+    
+    
+      <category term="Windows" scheme="http://msxl.github.io/tags/Windows/"/>
+    
+      <category term="kali" scheme="http://msxl.github.io/tags/kali/"/>
+    
+      <category term="Linux" scheme="http://msxl.github.io/tags/Linux/"/>
+    
+      <category term="python" scheme="http://msxl.github.io/tags/python/"/>
+    
+      <category term="php" scheme="http://msxl.github.io/tags/php/"/>
+    
+      <category term="exp" scheme="http://msxl.github.io/tags/exp/"/>
+    
+      <category term="远控" scheme="http://msxl.github.io/tags/%E8%BF%9C%E6%8E%A7/"/>
+    
+      <category term="Android" scheme="http://msxl.github.io/tags/Android/"/>
+    
+      <category term="mac os" scheme="http://msxl.github.io/tags/mac-os/"/>
+    
+      <category term="逆向破解" scheme="http://msxl.github.io/tags/%E9%80%86%E5%90%91%E7%A0%B4%E8%A7%A3/"/>
+    
+      <category term="SQL注入" scheme="http://msxl.github.io/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term="爆破" scheme="http://msxl.github.io/tags/%E7%88%86%E7%A0%B4/"/>
+    
+      <category term="资源分享" scheme="http://msxl.github.io/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="渗透测试" scheme="http://msxl.github.io/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="shell" scheme="http://msxl.github.io/tags/shell/"/>
+    
+      <category term="内网渗透" scheme="http://msxl.github.io/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="提权" scheme="http://msxl.github.io/tags/%E6%8F%90%E6%9D%83/"/>
+    
+      <category term="MSF" scheme="http://msxl.github.io/tags/MSF/"/>
+    
+      <category term="代码审计" scheme="http://msxl.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>upload-labs通关指南(下)</title>

@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://msxl.github.io/2020/04/29/hell/</loc>
+    
+    <lastmod>2020-04-29T08:03:00.621Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://msxl.github.io/tags/index.html</loc>
+    
+    <lastmod>2020-04-29T08:01:49.737Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://msxl.github.io/categories/index.html</loc>
+    
+    <lastmod>2020-04-29T08:00:49.701Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://msxl.github.io/2019/10/12/upload-labs%E9%80%9A%E5%85%B3%E6%8C%87%E5%8D%97-%E4%B8%8A/</loc>
     
     <lastmod>2020-04-29T07:23:39.178Z</lastmod>
@@ -51,23 +72,9 @@
   </url>
   
   <url>
-    <loc>http://msxl.github.io/tags/index.html</loc>
-    
-    <lastmod>2019-09-06T07:11:03.466Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://msxl.github.io/about/index.html</loc>
     
     <lastmod>2019-09-06T06:50:10.253Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://msxl.github.io/categories/index.html</loc>
-    
-    <lastmod>2019-09-06T06:14:54.082Z</lastmod>
     
   </url>
   
