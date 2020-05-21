@@ -167,7 +167,7 @@
       
     
 
-    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">6</span></a>
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">7</span></a>
 
   </li>
       
@@ -180,7 +180,7 @@
       
     
 
-    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">5</span></a>
+    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">8</span></a>
 
   </li>
       
@@ -222,6 +222,258 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://msxl.github.io/2020/05/21/3、命令注入/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pr0ud">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/shell.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pr0ud">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/05/21/3、命令注入/" class="post-title-link" itemprop="url">3、命令注入</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-21 20:37:42 / 修改时间：20:38:16" itemprop="dateCreated datePublished" datetime="2020-05-21T20:37:42+08:00">2020-05-21</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="PHP代码执行注入与命令执行"><a href="#PHP代码执行注入与命令执行" class="headerlink" title="PHP代码执行注入与命令执行"></a>PHP代码执行注入与命令执行</h3><h5 id="常见的代码执行函数："><a href="#常见的代码执行函数：" class="headerlink" title="常见的代码执行函数："></a><strong>常见的代码执行函数：</strong></h5><p>eval、assert、preg_replace</p><p><strong>eval() ：</strong></p><p>eval()函数会把字符串以php代码执行，字符串必须是合法的php代码。</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码执行注入</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$code = $_GET[<span class="string">'pr0ud'</span>];</span><br><span class="line"><span class="keyword">eval</span>($code);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/05/21/3、命令注入/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://msxl.github.io/2020/05/21/2、超全局变量/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pr0ud">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/shell.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pr0ud">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/05/21/2、超全局变量/" class="post-title-link" itemprop="url">2、超全局变量</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-21 20:35:51 / 修改时间：20:37:31" itemprop="dateCreated datePublished" datetime="2020-05-21T20:35:51+08:00">2020-05-21</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="超级全局变量"><a href="#超级全局变量" class="headerlink" title="超级全局变量"></a>超级全局变量</h3><h5 id="PHP超级全局变量列表："><a href="#PHP超级全局变量列表：" class="headerlink" title="PHP超级全局变量列表："></a>PHP超级全局变量列表：</h5><ul>
+<li><strong>$GLOBALS</strong></li>
+<li><strong>$_SERVER</strong></li>
+<li><strong>$_GET</strong></li>
+<li><strong>$_POST</strong></li>
+<li><strong>$_FILES</strong></li>
+<li><strong>$_ENV</strong></li>
+<li><strong>$_COOKIE</strong></li>
+<li><strong>$_SESSION</strong></li>
+</ul><h4 id="GLOBALS-—-引用全局作用域中可用的全部变量"><a href="#GLOBALS-—-引用全局作用域中可用的全部变量" class="headerlink" title="$GLOBALS — 引用全局作用域中可用的全部变量"></a>$GLOBALS — 引用全局作用域中可用的全部变量</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="comment">/*	$GLOBALS 例子</span></span><br><span class="line"><span class="comment">$a = 2;</span></span><br><span class="line"><span class="comment">echo $GLOBALS["a"];</span></span><br><span class="line"><span class="comment">?&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">echo</span> $a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">echo</span> $GLOBALS[<span class="string">"a"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$a = <span class="number">3</span>;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/05/21/2、超全局变量/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://msxl.github.io/2020/05/21/1、php核心配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pr0ud">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/shell.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pr0ud">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/05/21/1、php核心配置/" class="post-title-link" itemprop="url">1、php核心配置</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-21 20:28:30 / 修改时间：20:30:49" itemprop="dateCreated datePublished" datetime="2020-05-21T20:28:30+08:00">2020-05-21</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="PHP核心配置详解"><a href="#PHP核心配置详解" class="headerlink" title="PHP核心配置详解"></a>PHP核心配置详解</h2><p>​        代码在不同的环境下执行的结果也会大有不同，可浓就因为一个配置问题，导致一个非常高危的漏洞能够利用；也可能你已经找到的一个漏洞就因为你的配置问题，导致你鼓捣很久都无法构造成功的漏洞利用代码。因此我们在代码审计之前必修要熟悉PHP各个版本中配置文件的核心指令，才能更高效地挖掘到高质量的漏洞。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/05/21/1、php核心配置/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://msxl.github.io/2020/05/21/HTTP基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -251,25 +503,12 @@
                 
               
 
-              <time title="创建时间：2020-05-21 20:20:00 / 修改时间：20:21:41" itemprop="dateCreated datePublished" datetime="2020-05-21T20:20:00+08:00">2020-05-21</time>
+              <time title="创建时间：2020-05-21 20:20:00 / 修改时间：20:37:27" itemprop="dateCreated datePublished" datetime="2020-05-21T20:20:00+08:00">2020-05-21</time>
             </span>
           
             
 
             
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/书籍笔记持续更新/" itemprop="url" rel="index"><span itemprop="name">书籍笔记持续更新</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -778,7 +1017,7 @@ load/use                    #加载模块</code></pre>
         
           <a href="/archives">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -799,7 +1038,9 @@ load/use                    #加载模块</code></pre>
         
           
         
-        <span class="site-state-item-count">3</span>
+          
+        
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -826,7 +1067,9 @@ load/use                    #加载模块</code></pre>
         
           
         
-        <span class="site-state-item-count">6</span>
+          
+        
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

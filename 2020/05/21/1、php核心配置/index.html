@@ -55,15 +55,20 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Pr0ud">
-<meta property="og:url" content="http://msxl.github.io/archives/2019/09/index.html">
+  <meta name="description" content="PHP核心配置详解​        代码在不同的环境下执行的结果也会大有不同，可浓就因为一个配置问题，导致一个非常高危的漏洞能够利用；也可能你已经找到的一个漏洞就因为你的配置问题，导致你鼓捣很久都无法构造成功的漏洞利用代码。因此我们在代码审计之前必修要熟悉PHP各个版本中配置文件的核心指令，才能更高效地挖掘到高质量的漏洞。">
+<meta name="keywords" content="代码审计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1、php核心配置">
+<meta property="og:url" content="http://msxl.github.io/2020/05/21/1、php核心配置/index.html">
 <meta property="og:site_name" content="Pr0ud">
+<meta property="og:description" content="PHP核心配置详解​        代码在不同的环境下执行的结果也会大有不同，可浓就因为一个配置问题，导致一个非常高危的漏洞能够利用；也可能你已经找到的一个漏洞就因为你的配置问题，导致你鼓捣很久都无法构造成功的漏洞利用代码。因此我们在代码审计之前必修要熟悉PHP各个版本中配置文件的核心指令，才能更高效地挖掘到高质量的漏洞。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-21T12:30:49.445Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pr0ud">
+<meta name="twitter:title" content="1、php核心配置">
+<meta name="twitter:description" content="PHP核心配置详解​        代码在不同的环境下执行的结果也会大有不同，可浓就因为一个配置问题，导致一个非常高危的漏洞能够利用；也可能你已经找到的一个漏洞就因为你的配置问题，导致你鼓捣很久都无法构造成功的漏洞利用代码。因此我们在代码审计之前必修要熟悉PHP各个版本中配置文件的核心指令，才能更高效地挖掘到高质量的漏洞。">
   <link rel="alternate" href="/atom.xml" title="Pr0ud" type="application/atom+xml">
-  <link rel="canonical" href="http://msxl.github.io/archives/2019/09/">
+  <link rel="canonical" href="http://msxl.github.io/2020/05/21/1、php核心配置/">
 
 
 <script id="page-configurations">
@@ -71,13 +76,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | Pr0ud</title>
+  <title>1、php核心配置 | Pr0ud</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -214,145 +219,133 @@
         <div class="content-wrap">
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        
-        
-        
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://msxl.github.io/2020/05/21/1、php核心配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pr0ud">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/shell.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pr0ud">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">1、php核心配置
+
           
-        
-        <span class="collection-header">嗯..! 目前共计 8 篇日志。 继续努力。</span>
-      </div>
-      
+        </h1>
 
-      
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-  
-  
+              
+                
+              
 
-  
+              <time title="创建时间：2020-05-21 20:28:30 / 修改时间：20:30:49" itemprop="dateCreated datePublished" datetime="2020-05-21T20:28:30+08:00">2020-05-21</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
     
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-  
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/24/IIS写权限漏洞/" itemprop="url">
-            <span itemprop="name">IIS写权限漏洞</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-24T09:13:14+08:00"
-              content="2019-09-24">
-          09-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/11/CVE-2019-0232漏洞复现/" itemprop="url">
-            <span itemprop="name">CVE-2019-0232漏洞复现</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-11T06:33:01+08:00"
-              content="2019-09-11">
-          09-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/09/CVE-2019-0708漏洞复现/" itemprop="url">
-            <span itemprop="name">CVE-2019-0708漏洞复现</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-09T15:46:03+08:00"
-              content="2019-09-09">
-          09-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+      
+        <h2 id="PHP核心配置详解"><a href="#PHP核心配置详解" class="headerlink" title="PHP核心配置详解"></a>PHP核心配置详解</h2><p>​        代码在不同的环境下执行的结果也会大有不同，可浓就因为一个配置问题，导致一个非常高危的漏洞能够利用；也可能你已经找到的一个漏洞就因为你的配置问题，导致你鼓捣很久都无法构造成功的漏洞利用代码。因此我们在代码审计之前必修要熟悉PHP各个版本中配置文件的核心指令，才能更高效地挖掘到高质量的漏洞。</p><a id="more"></a>
+<h4 id="PHP-INI-常量的定义："><a href="#PHP-INI-常量的定义：" class="headerlink" title="PHP_INI_*常量的定义："></a>PHP_INI_*常量的定义：</h4><p>​        <strong>常量</strong>                                                                        <strong>含义</strong></p>
+<p>PHP_INI_USER                            该配置选择可在用户的PHP脚本或Windows注册表中设置</p>
+<p>PHP_INI_PERDIR                        该配置选择可在php.ini、.htaccess或httpd,conf中设置</p>
+<p>PHP_INI_STSTEM                        该配置选项可在php.ini 或httpd.conf中设置</p>
+<p>PHP_INI_ALL                                该配置选项可在任何地方设置</p>
+<p>php.ini only                                    该配置选项仅可在php.ini中配置</p>
+<h4 id="PHP配置文件指令："><a href="#PHP配置文件指令：" class="headerlink" title="PHP配置文件指令："></a>PHP配置文件指令：</h4><p><strong>1、register_globals（全局变量注册开关）</strong></p>
+<p>该选项设置为on的情况下，会直接把用户GET、POST等方式提交上来的参数注册成全局变量并初始化值为参数对应的值，使提交参数可以直接在脚本中使用。</p>
 
     </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/代码审计/" rel="tag"># 代码审计</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/05/21/HTTP基础/" rel="next" title="HTTP基础">
+                  <i class="fa fa-chevron-left"></i> HTTP基础
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/05/21/2、超全局变量/" rel="prev" title="2、超全局变量">
+                  2、超全局变量 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
@@ -371,6 +364,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -383,6 +381,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP核心配置详解"><span class="nav-number">1.</span> <span class="nav-text">PHP核心配置详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP-INI-常量的定义："><span class="nav-number">1.0.1.</span> <span class="nav-text">PHP_INI_*常量的定义：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP配置文件指令："><span class="nav-number">1.0.2.</span> <span class="nav-text">PHP配置文件指令：</span></a></li></ol></li></ol></li></ol></div>
+        
       </div>
       <!--/noindex-->
 

