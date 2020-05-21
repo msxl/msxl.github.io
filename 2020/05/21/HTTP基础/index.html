@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="1.1 HTTP 1.1.1 HTTP请求 1.1.2 HTTP响应 1.1.3 HTTP方法 1.1.4 HTTP消息头 1.1.5 cookie 1.1.6 状态码 1.1.7 HTTPS 1.1.8 HTTP代理 1.1.9 HTTP身份验证   1.1 HTTP：​    HTTP（HyperText Transfer Protocol，超文本传输协议）是访问万维网使用的核心通信协议，也">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP基础">
+<meta property="og:url" content="http://msxl.github.io/2020/05/21/HTTP基础/index.html">
+<meta property="og:site_name" content="Pr0ud">
+<meta property="og:description" content="1.1 HTTP 1.1.1 HTTP请求 1.1.2 HTTP响应 1.1.3 HTTP方法 1.1.4 HTTP消息头 1.1.5 cookie 1.1.6 状态码 1.1.7 HTTPS 1.1.8 HTTP代理 1.1.9 HTTP身份验证   1.1 HTTP：​    HTTP（HyperText Transfer Protocol，超文本传输协议）是访问万维网使用的核心通信协议，也">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-21T12:21:41.174Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP基础">
+<meta name="twitter:description" content="1.1 HTTP 1.1.1 HTTP请求 1.1.2 HTTP响应 1.1.3 HTTP方法 1.1.4 HTTP消息头 1.1.5 cookie 1.1.6 状态码 1.1.7 HTTPS 1.1.8 HTTP代理 1.1.9 HTTP身份验证   1.1 HTTP：​    HTTP（HyperText Transfer Protocol，超文本传输协议）是访问万维网使用的核心通信协议，也">
+  <link rel="alternate" href="/atom.xml" title="Pr0ud" type="application/atom+xml">
+  <link rel="canonical" href="http://msxl.github.io/2020/05/21/HTTP基础/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>HTTP基础 | Pr0ud</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pr0ud</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">6</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">5</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://msxl.github.io/2020/05/21/HTTP基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pr0ud">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/shell.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pr0ud">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">HTTP基础
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-21 20:20:00 / 修改时间：20:21:41" itemprop="dateCreated datePublished" datetime="2020-05-21T20:20:00+08:00">2020-05-21</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/书籍笔记持续更新/" itemprop="url" rel="index"><span itemprop="name">书籍笔记持续更新</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>1.1 HTTP<ul>
+<li>1.1.1 HTTP请求</li>
+<li>1.1.2 HTTP响应</li>
+<li>1.1.3 HTTP方法</li>
+<li>1.1.4 HTTP消息头</li>
+<li>1.1.5 cookie</li>
+<li>1.1.6 状态码</li>
+<li>1.1.7 HTTPS</li>
+<li>1.1.8 HTTP代理</li>
+<li>1.1.9 HTTP身份验证</li>
+</ul>
+</li>
+</ul><p><strong>1.1 HTTP：</strong></p><p>​    HTTP（HyperText Transfer Protocol，超文本传输协议）是访问万维网使用的核心通信协议，也是所有Web应用程序使用的通信协议。</p><a id="more"></a>
+
+
+<p>​    HTTP使用一种基于消息的模型：客户端送出一条请求消息，而后由服务器返回一条响应消息。该协议基本上不需要连接，虽然HTTP使用有状态的TCP协议作为它的传输机制，但每次请求与响应交换都自动完成，并且可以能使用不同的TCP连接。</p>
+<p><strong>1.1.1 HTTP请求</strong></p>
+<p>​    所有HTTP消息（请求与响应）中都包含一个或几个单行显示的消息头（header），然后是一个强制空白行，最后是消息主体（可选）。以下是一个典型的HTTP请求：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">GET /web-security HTTP/1.1</span><br><span class="line">Host: portswigger.net</span><br><span class="line">Connection: close</span><br><span class="line">Cache-Control: max-age=0</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.9 Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line">Sec-Fetch-Site: same-origin</span><br><span class="line">Sec-Fetch-Mode: navigate</span><br><span class="line">Sec-Fetch-User: ?1</span><br><span class="line">Sec-Fetch-Dest: document</span><br><span class="line">Referer: https://portswigger.net/web-security/web-application-hackers-handbook</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Cookie: ASP.NET_SessionId=CFB5F0B99556658EA218DB661B04EA21AAE8DFCE87E89168F55726FB11859C06F0D87EED2B7C5675; SessionId=00F549CB548FE937C834yi303820B7261C8223ABE67F4E9B400713FF4DF07EEA6F4DED860C6DFF0937</span><br></pre></td></tr></table></figure>
+
+<p>每个HTTP请求的第一行都由3个以上空格间隔的项目组成。</p>
+<ol>
+<li>一个说明HTTP方法的动词。最长用的方法为GET,它的主要作用是从Web服务器获取一个资源。GET请求并没有有消息主体，因此在消息头后的空白行中没有其他数据。</li>
+<li>所请求的URL。该URL通常由所请求的资源名称，以及一个包含客户端向该资源提交的参数的可以选查询字符串组成。在该URL中，查询字符串以<strong>?</strong>字符标识。</li>
+<li>使用HTTP版本。因特网上常用的HTTP版本为1.0和1.1，多数浏览器默认使用1.1版本。1.1版本必须使用<strong>Host</strong>请求头。</li>
+</ol>
+<p>请求示例中其他要点：</p>
+<ol>
+<li>Referer消息头用于表示发出请求的原始URL（例如，因为用户单击页面上的一个链接）。请注意，在最初的HTTP规范中，这个消息头存在拼写错误，并且这个错误一直保留了下来。</li>
+<li>User-Agent消息头提供与浏览器或其他生成请求的客户端软件有关的信息。注意，由于历史原因，大多数浏览器中包含Mozilla前缀。这是因为最初站支配地位的Netscape浏览器使用了User-Agent字符串，而其他浏览器也希望让Web站点相信它们与这种标准兼容。</li>
+<li>Host消息头用于指定出现在被访问的完整URL中的主机名称。如果几个Web站点以相同的一台服务器为主机，就需要使用Host消息头，因为请求第一行中的URL内通常并不包含主机名称。</li>
+<li>Cookie消息头用于提交服务器向客户端发布的其他参数。</li>
+</ol>
+<p><strong>1.1.2 HTTP 响应</strong></p>
+<p>以下是一个典型的HTTP响应：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK　　</span><br><span class="line">Date: Tue, 17 Mar 2013 08:12:54 GMT　　</span><br><span class="line">Server: Apache/2.2.8 (Win32) PHP/5.2.5</span><br><span class="line">X-Powered-By: PHP/5.2.5</span><br><span class="line">Set-Cookie: PHPSESSID=c0huq7pdkmm5gg6osoe3mgjmm3; path=/</span><br><span class="line">Expires: Thu, 19 Nov 1981 08:52:00 GMT</span><br><span class="line">Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Content-Length: 4393</span><br><span class="line">Keep-Alive: timeout=5, max=100</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br></pre></td></tr></table></figure>
+
+<p>每个HTTP响应的第一行由3个以空格间隔的项目组成。</p>
+<ol>
+<li>使用的HTTP版本。</li>
+<li>表示请求结果的数字状态码。200是最为常用的状态码，他表示成功提交了请求，正在返回所请求的资源。</li>
+<li>一段文本形式的“原因短语”，进一步说明响应状态。这个短语中可包含任意值，当前浏览器不将其用于任何目的。</li>
+</ol>
+<p>响应示例中的其他一些要点：</p>
+<ol>
+<li>Server消息头中包含一个旗标，指明所使用的Web服务器软件。有时还包括其他信息， 如所安装的模块和服务器操作系统。其中包含的信息可能并不准确。</li>
+<li>Set-Cookie消息头向浏览器发送另一个cookie，它将在随后向服务器发送的请求中由Cookie消息头返回。</li>
+<li>Pragma消息头指示浏览器不要将响应保存在缓存中。Expires消息头指出响应内容已经过期，因此不应保存在缓存中。</li>
+<li>几乎所有的HTTP响应在消息头后的空白行下面都包含消息主体，Content-Type消息头表示这个消息主体中包含一个HTML文档。</li>
+<li>Coontent-Length消息头规定消息主体的字节长度。</li>
+</ol>
+<p><strong>1.1.3 HTTP方法</strong></p>
+<p>攻击Web应用程序时，几乎会遇到最常用的方法：GET和POST。</p>
+<p>​    GET方法的作用在于获取资源。它可以用于URL查询字符串的形式向所请求的资源发送参数。用户可将一个包含动态资源的URL标注为书签，用户自己或其他用户随后可重复利用该书签来获取等价的资源。如果单击外部链接，还可以用Referer消息头将它们传送到其他站点。因此，请勿使用查询字符串传送任何敏感信息。</p>
+<p>​    POST方法的主要作用是执行操作。使用这个方法可以在URL查询字符串与消息主体中发送请求参数。尽管仍然可以将URL标注为书签，但书签中并不包含消息主体发送的任何参数。许多维护URL日志的位置及Referer消息头也将这些参数排除在外。在执行某一操作时必须使用POST请求。</p>
+<p>除了GET和POST方法以外，HTTP协议还支持许多其他因特殊目的而建立的方法。需要了解的其他方法如下。</p>
+<ol>
+<li>HEAD。这个方法的功能与GET方法相似，不用之处在于服务器不会在其响应中返回消息主体。服务器返回的消息头应与对应GET请求返回的消息头相同。因此，这种方法可用于检查某一资源在向其提交GET请求前是否存在，</li>
+<li>TRACE这种方法主要诊断。服务器应在响应主体中返回其收到的请求消息的具体内容。这种方法可用于检测客户端与服务器之间是否存在任何操纵请求的代理服务器。</li>
+<li>OPTIONS。这种方法要求服务器报告对某一特殊资源有效的HTTP方法。服务器通常返回一个包含Allow消息头的响应，并在其中例出所有有效的方法。</li>
+<li>PUT。这个方法试图使用包含在请求主体中的内容，向服务器上传指定的资源。如果激活这个方法，就可以利用它来攻击应用程序。</li>
+</ol>
+<p>还有许多其他的与攻击Web应用程序没有直接关系的HTTP方法。</p>
+<p><strong>1.1.4 HTTP消息头</strong></p>
+<p>​    HTTP支持许多不同的消息头，其中一些专用于特殊用途。一些消息头可用在请求与响应中，而其他一些消息头只能专门在某个特定的消息中。</p>
+<p>常用消息头：</p>
+<ol>
+<li>Connection。这个消息头用于告诉通信的另一端，在完成HTTP传输后是关闭TCP连接，还是保持连接开放以接收其他消息。</li>
+<li>Content-Encoding。这个消息头为消息主体中的内容指定编码形式（如gzip），一些应用程序使用它来压缩响应以加快传输速度。</li>
+<li>Content-Type。这个消息头用于规定消息主体的内容类型。例如，HTML文档的内容类型为text/html</li>
+<li>Transfer-Encoding。这个消息头指定为方便其通过HTTP传输而对消息主体使用的任何编码。如果使用这个消息头，通常用它指定块编码。</li>
+</ol>
+<p>请求消息头：</p>
+<ol>
+<li>Accept。这个消息头用于告诉服务器客户端原因接受那些内容，如图像类型、办公文档格式等。</li>
+<li>Accept-Encoding。这个消息头用于告诉服务器，客户端愿意接受那些内容编码。</li>
+<li>Authorizxation。这个消息头用于为一种内置HTTP身份验证向服务器提交证书。</li>
+<li>Cookie。这个消息头用于向服务器提交它以前发布的cookie。</li>
+<li>Host。这个消息头用于指定出现在所请求的完整URL中的主机名称。</li>
+<li>If-Modified-Since。这个消息头用于说明浏览器最后一次收到所请求的资源的时间。</li>
+<li>Origin。这个消息头用在跨域Ajax请求中，用于指示提出请求的域。</li>
+<li>Referer。这个消息头用于指示提出当前请求的原始URL。</li>
+<li>User-Agent。这个消息头提供与浏览器生成请求的其他客户端软件有关。</li>
+</ol>
+<p>响应消息头：</p>
+<ol>
+<li>Cache-Control。这个消息头用于向浏览器传送缓存指令（如no-cache）。</li>
+<li>Server。这个消息头提供所使用的Web服务器软件的相关信息。</li>
+<li>Set-Cookie。这个消息头用于向浏览器发布cookie，浏览器会在随后的请求中将其返回给服务器。</li>
+<li>WWW-Authenticate。这个消息头用在带401状态码的响应中，提供与服务器所支持的身份验证类型有关的信息。</li>
+<li>X-Frame-Options。这个消息头指示浏览器框架石佛及如何加载当前响应。</li>
+</ol>
+<p><strong>1.1.5 cookie</strong></p>
+<p>​    cookie是大多数Web应用程序所依赖的HTTP协议的一个关键组成部分,攻击者常常通过它来利用Wcb应用程序中的漏洞。服务器使用 cookie机制向客户端发送数据,客户端保存cookie并将其返回给服务器。0与其他类型的请求参数（存在于URL查询字符串或消息主体中）不同,无须应用程序或用户采取任何特殊措施,随后的每一个请求都会继续重新向服务器提交cookie。</p>
+<p>服务器使用Set-Cookie响应消息头发布cookie：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: PHPSESSID=c0huq7pdkmm5gg6osoe3mgjmm3</span><br></pre></td></tr></table></figure>
+
+<p>然后，用户的浏览器自动将下面的消息头添加到随后返回给同一服务器的请求中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie: PHPSESSID=c0huq7pdkmm5gg6osoe3mgjmm3</span><br></pre></td></tr></table></figure>
+
+<p>​    cookie一般由一个名/值对构成，但也可包含任何不含空格的字符串。可以在服务器响应中使用几个Set-Cookie消息头发布多个cookie.并可在同一个Cookie消息头中用分号分隔不同的cookie，将它们全部返回给服务器。</p>
+<p>​    除cookie的实际位外，Set-Cookie消息头还可包含以下任何可选属性，用它们控制浏览器处理cookie的方式。</p>
+<ol>
+<li>expires。用于设定cookie的有效时间。这样会使浏览器将cookie保存在永久性的存储器中，在随后的浏览器会话中重复利用.直到到期时间为止。如果没有设定这个属性，那么cookie仅用在当前浏览器会话中。</li>
+<li>domain。用于指定cookie的有效域。这个域必须和收到cookie的域相同，或者是它的父域。</li>
+<li>path。用于指定cookie的有效URL路径。</li>
+<li>secure。如果设置这个属性.则仅在HTTPS请求中提交cookie。</li>
+<li>HttpOnly。如果设置这个属性，将无法通过客户端JavaScript直接访问cookie。</li>
+</ol>
+<p><strong>1.1.6 状态码</strong></p>
+<p>​    每条HTTP响应消息都必须在第一行中包含一个状态码,说明请求的结果。根据代码的第位数字,可将状态码分为以下5类。</p>
+<ol>
+<li>1xx——提供信息。</li>
+<li>2xx——请求被成功提交。</li>
+<li>3xx——客户端被重定向到其他资源。</li>
+<li>4xx——请求包含某种错误。</li>
+<li>5xx——服务器执行请求时遇到错误。</li>
+</ol>
+<p>​    还有大量特殊状态码,其中许多状态码仅用在特殊情况下。下面列出滲透测试员在攻击Web应用程序时最有可能遇到的状态码及其相关的原因短语。</p>
+<ol>
+<li>100 Continue。当客户端提交一个包含主体的请求时,将发送这个响应。该响应表示已改到请求消息头,客户端应继续发送主体。请求完成后,再由服务器返回另一个响应。</li>
+<li>200 Ok。本状态码表示已成功提交请求,且响应主体中包含请求结果。</li>
+<li>201 Created。PUT请求的响应返回这个状态码,表示请求已成功提交。</li>
+<li>301 Moved Permanently。本状态码将浏览器水久重定向到另外一个在 Location消息头中指定的URL。以后客户端应使用新URL替换原始URL</li>
+<li>302 Found。本状态码将浏览器暂时重定向到另外一个在 Location消息头中指定的URL。客户端应在随后的请求中恢复使用原始URL。</li>
+<li>304 Not Modified。本状态码指示浏览器使用缓存中保存的所请求资源的副本。服务器使用rf- Modified-Since与If-None-Match消息头确定客户端是否拥有最新版本的资源。</li>
+<li>400 Bad Request。本状态码表示客户端提交了一个无效的HITP请求。当以某种无效的方式修改请求时(例如在URL中插人一个空格符),可能会遇到这个状态码。</li>
+<li>401 Unauthorized。服务器在许可请求前要求HTTP进行身份验证。wwN-Authenticate消息头详细说明所支持的身份验证类型</li>
+<li>403 Forbidden。本状态码指出,不管是否通过身份验证,禁止任何人访问被请求的资源。404 Not Found。本状态码表示所请求的资源并不存在。</li>
+<li>405 Method Not Allowed。本状态码表示指定的URL不支持请求中使用的方法。例如,如果试图在不支持PUT方法的地方使用该方法,就会收到本状态码。</li>
+<li>413 Request Entity Too Large。如果在本地代码中探查缓冲器溢出漏洞并就此提交超长数据串,则本状态码表示请求主体过长,服务器无法处理。</li>
+<li>414 Request URI Too Long。与前一个响应类似,本状态码表示请求中的URL过长,服务器无法处理。</li>
+<li>500 Internal Server Error。本状态码表示服务器在执行请求时遇到错误。当提交无法预料的输入、在应用程序处理过程中造成无法处理的错误时,通常会收到本状态码。应该仔细检査服务器响应的所有内容,了解与错误性质有关的详情。</li>
+<li>503 Service Unavailable。通常,本状态码表示尽管Web服务器运转正常,并且能够响应请求,但服务器访问的应用程序还是无法作出响应。应该进行核实,是否因为执行了某种行为造成这个结果。</li>
+</ol>
+<p><strong>1.1.7 HTTPS</strong></p>
+<p>​    HTTP使用普通的非加密TCP作为其传输机制，在网络适当位置的攻击者能够截取这个机制。HTTPS本质上与HTTP一样，都属于应用层协议，但HTTPS通过安全传输机制——安全套接层（Secure Sockert Layer，SSL）——传送ss数据。这种机制可保护通过网络传送的所有数据的隐密性与完整性,显著降低非入侵性拦截攻击的可能性。不管是否使用SSL进行传输，HTTP请求与响应都以完全相同的方式工作。</p>
+<p><strong>1.1.8 HTTP代理</strong></p>
+<p>​    HTTP代理服务器是一个协调客户端浏览器与目标Web服务器之间访问的服务器。当配置测览器使用代理服务器时,它会将所有请求提交到代理服务器,代理服务器再将请求转送给相关Web服务器,并将响应返回给浏览器。大多数代理还使用其他服务,如缓存、验证与访问控制。</p>
+<ol>
+<li>​    当浏览器向代理服务器发布HTTP请求时,它会将完整的URL(包括协议前缀htp/与服务器主机名称,在非标准URL中,还包括端口号)插入请求中。代理服务器将提取主机名称和端口,并使用这些信息将请求指向正确的目标Web服务器。</li>
+<li>​    当使用HTTPS时,浏览器无法与代理服务器进行SSL握手,因为这样做会破坏安全隧道,使通信易于遭受拦截攻击。因此,测览器必须将代理作为一个纯粹的TCP级中继,由它传递浏览器与目标Web浏览器之间的所有网络数据,并与测览器进行正常的SSL握手。测览器使用CONNECT方法向代理服务器提交一个HTTP请求,并指定URL中的目标主机名称与端口号,从而建立这种中继。如果代理允许该请求,它会返回一个含200状态码的HTIP响应,一直开放TCP连接,从此以后作为目标Web服务器的纯粹TCP级中继。</li>
+</ol>
+<p><strong>1.1.9 HTTP身份验证</strong></p>
+<p>HTTP拥有自己的身份验证机制，使用不同的身份验证方案。</p>
+<ol>
+<li>Basic。这是一种非常简单的身份验证机制，它在请求消息中随每条消息以Base64编码字符串的形式发送用户证书。</li>
+<li>NTLM。这是一种质询-响应式机制，它使用某个Windows NTLM协议版本。</li>
+<li>Digest。这是一种质询-响应式机制，它随同用户证书一起使用一共随机值MD5校验和。</li>
+</ol>
+<p>​    虽然组织内部经常使用这些身份验证协议访问内联网服务,但因特网上的Web应用程序基本很少使用它们。</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Web/" rel="tag"># Web</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/12/渗透测试之meterpreter简单使用/" rel="next" title="渗透测试之meterpreter简单使用">
+                  <i class="fa fa-chevron-left"></i> 渗透测试之meterpreter简单使用
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/uploads/images/shell.jpg"
+      alt="Pr0ud">
+  <p class="site-author-name" itemprop="name">Pr0ud</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://github.com/yourname" title="GitHub &rarr; https://github.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="mailto:msxl8888@163.com" title="E-Mail &rarr; mailto:msxl8888@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://weibo.com/yourname" title="Weibo &rarr; https://weibo.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://twitter.com/yourname" title="Twitter &rarr; https://twitter.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://wileysec.com" title="http://wileysec.com" rel="noopener" target="_blank">Wiley</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://422926799.github.io" title="https://422926799.github.io" rel="noopener" target="_blank">九世</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://t.cn/AiQxVyl3" title="http://t.cn/AiQxVyl3" rel="noopener" target="_blank">神风</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xie2366626231.github.io./" title="https://xie2366626231.github.io./" rel="noopener" target="_blank">沫</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pr0ud</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
